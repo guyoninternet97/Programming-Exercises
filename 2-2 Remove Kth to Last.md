@@ -1,13 +1,11 @@
 ## Implement an algorithm to find the k<sup>th</sup> to last element of a singly linked list
 #### Author: James Proulx
 
-To detail the problem further, if I remove the 1st to last element, I simply snip off the end of the list.
-If I remove the 2nd to last, I remove the element such that there is one element between the end of the list and itself.
-And so on
+Here is an example linked list:
 
 [head] -> [ex] -> [ex] -> ... -> [3rd to last] -> [2nd to last] -> [1st to last] -> null
 
-Assume k > 0
+Assume k > 0, and the length of the list > k
 
 Lets the very simple implementation of a Linked List, provided by the book:
 
@@ -37,10 +35,10 @@ We'll have to do most of this ourselves.
 
 
 One simple but not ideal solution could be to simply go through the linked list, counting the nodes, and then revisit the head,
-traverse to the k<sup>th</sup> to last node, and remove it. Let's implement this.
+traverse to the k<sup>th</sup> to last node, and return it. Let's implement this.
 
 ```java
-private static void removeKthToLast(Node head, int k) {
+private static Node removeKthToLast(Node head, int k) {
   int length = 1; //To count the head
   Node traverseNode = head;
   while (traverseNode.next != null) {
@@ -49,14 +47,14 @@ private static void removeKthToLast(Node head, int k) {
   }
   
   //At this point, we have the length of the linked list, and can now travel the length - k - 1 
-  //to arrive at the element before the element to remove
+  //to arrive at the element before the return element
   traverseNode = head //reset traverse node
   for (int i = 0; i < length - k - 1; i++) {
     traverseNode = traverseNode.next;
   }
   
-  //Now remove kth to last element
-  traverseNode.next = traverseNode.next.next; //Skip over the kth to last element
+  //Now return the kth to last element
+  return traverseNode.next;
 }
 ```
 
@@ -65,6 +63,35 @@ My intuition is that we could have two traversing nodes, one k elements behind t
 
 This way, when the first traverse node arrives at the end of the list, the slower node is already at the node we want to focus on.
 Let's try an example. For the second to last node, when our first traverse node arrives at the end, the second traverse node
-is at the third to last element, ready to remove the 2nd to last.
+is at the third to last element, ready to return the 2nd to last. We don't need to count the length at all!
 
 Let's try it.
+
+```java
+private static void removeKthToLast(Node head, int k) {
+  
+  Node traverseNode = head;
+  Node slowTraverseNode = head;
+  
+  for (int i = 0; i < k; i++) {
+    traverseNode = traverseNode.next;
+  }
+  
+  //Now, the traverse node is k elements ahead of the slow traverse node. Continue so the traverse node finds the end.
+  
+  while (traverseNode.next != null) {
+    traverseNode = traverseNode.next;
+    slowTraverseNode = slowTraverseNode.next;
+  }
+  
+  //Now return kth to last element
+  return slowTraverseNode.next;
+}
+```
+
+This solution runs in **O(n)**, and only iterates over the list once. Excellent!
+---------------------------------------------------------------------------------
+At this point, I am going to check the book to see the official solution, and see if any improvements can be made.
+
+The book details a few solutions, one recurisve and one interative.
+The recursive solution given is as follows
