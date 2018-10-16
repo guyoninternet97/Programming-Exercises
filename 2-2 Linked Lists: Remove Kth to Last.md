@@ -7,7 +7,7 @@ Here is an example linked list:
 
 Assume k > 0, and the length of the list > k
 
-Lets the very simple implementation of a Linked List, provided by the book:
+Lets use the very simple implementation of a Linked List, provided by the book:
 
 ```java
 Class Node {
