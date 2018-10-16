@@ -38,7 +38,7 @@ One simple but not ideal solution could be to simply go through the linked list,
 traverse to the k<sup>th</sup> to last node, and return it. Let's implement this.
 
 ```java
-private static Node removeKthToLast(Node head, int k) {
+private static Node returnKthToLast(Node head, int k) {
   int length = 1; //To count the head
   Node traverseNode = head;
   while (traverseNode.next != null) {
@@ -68,7 +68,7 @@ is at the third to last element, ready to return the 2nd to last. We don't need 
 Let's try it.
 
 ```java
-private static void removeKthToLast(Node head, int k) {
+private static void returnKthToLast(Node head, int k) {
   
   Node traverseNode = head;
   Node slowTraverseNode = head;
