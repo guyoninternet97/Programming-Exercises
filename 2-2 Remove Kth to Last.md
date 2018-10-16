@@ -93,5 +93,23 @@ This solution runs in **O(n)**, and only iterates over the list once. Excellent!
 ---------------------------------------------------------------------------------
 At this point, I am going to check the book to see the official solution, and see if any improvements can be made.
 
-The book details a few solutions, one recurisve and one interative.
-The recursive solution given is as follows
+The book details a few solutions, some recurisve and one iterative.
+
+The recursive solutions I find to be quite unsatisfactory. Because they need to return both a counter and a value,
+these require either changing the problem or creating a wrapper class. Not only this, but then take up **O(n)** space!
+An iterative solution only requires **O(1)** space.
+
+
+What does their iterative solution look like?
+
+The iterative solution is very similar to my solution! It doesn't look there's much a way to improve upon this.
+However, the book did not make the same assumptions I made, and did more error handling than I did. Had this
+been a real coding exercise, my code likely would have failed some test cases.
+
+#### Conclusion
+
+This was a fun exercise! The fact that it was singly linked and we couldn't directly access the kth to last element
+made this very interesting. I learned to be careful about my assumptions, if they aren't stated by the client or by
+the problem, I need to handle them. Otherwise, my program might crash!
+
+Thanks for reading!
