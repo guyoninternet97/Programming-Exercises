@@ -51,7 +51,7 @@ private static boolean isUnique(String s) {
 ```
 
 
-Hmm. This is a correct solution, but it runs in a horrific **O(n<sup>2</sup>)** runtime. Can we do better?
+Hmm. This is a correct solution, but it runs in an unsatisfactory **O(n<sup>2</sup>)** runtime. Can we do better?
 
 
 My first thought is that with this solution, we check every character against every other character. But when we compare the first character
